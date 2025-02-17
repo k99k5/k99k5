@@ -17,6 +17,9 @@ importers:
       hexo-enhancer:
         specifier: ^1.0.10
         version: 1.0.10
+      hexo-filter-date-from-git:
+        specifier: ^0.2.0
+        version: 0.2.0
       hexo-fs:
         specifier: ^5.0.0
         version: 5.0.0
@@ -414,6 +417,9 @@ packages:
 
   hexo-enhancer@1.0.10:
     resolution: {integrity: sha512-Q095PEDJ7Q0Xwbp/NImt0B6YsI3W4/H+SDB3fDBS+CbEXCzorXB3uowPrS/tLC6FLC3IJHUz8dYypSlZO85E7g==}
+
+  hexo-filter-date-from-git@0.2.0:
+    resolution: {integrity: sha512-wfy12bhJPpTpKrjq8+mlk3m78TSkHgtwQWF1XzB9M4fF3ttVy4cNpCnQMbvxm+QViLf+4/DRxaWwSGMLXrZdtw==}
 
   hexo-front-matter@1.0.0:
     resolution: {integrity: sha512-Hn8IIzgWWnxYTekrjnA0rxwWMoQHifyrxKMqVibmFaRKf4AQ2V6Xo13Jiso6CDwYfS+OdA41QS5DG1Y+QXA5gw==}
@@ -1340,6 +1346,10 @@ snapshots:
       hexo-front-matter: 1.0.0
       hexo-fs: 3.1.0
       md5: 2.3.0
+      moment-timezone: 0.5.47
+
+  hexo-filter-date-from-git@0.2.0:
+    dependencies:
       moment-timezone: 0.5.47
 
   hexo-front-matter@1.0.0:
