@@ -1,6 +1,7 @@
 ---
 title: 关于我
 layout: about
+comment: true
 ---
 
 ## 👋 你好！
