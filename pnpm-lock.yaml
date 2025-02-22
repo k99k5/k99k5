@@ -14,12 +14,12 @@ importers:
       hexo:
         specifier: ^7.3.0
         version: 7.3.0(chokidar@3.6.0)
+      hexo-auto-git-date:
+        specifier: ^0.1.2
+        version: 0.1.2
       hexo-enhancer:
         specifier: ^1.0.10
         version: 1.0.10
-      hexo-filter-date-from-git:
-        specifier: ^0.2.0
-        version: 0.2.0
       hexo-fs:
         specifier: ^5.0.0
         version: 5.0.0
@@ -407,6 +407,9 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
+  hexo-auto-git-date@0.1.2:
+    resolution: {integrity: sha512-dyEJpEDCYauJLEwpIkaW+VF8X7hdZW6xKKGbY2gF6yDA0vuCnkBZ0HmZjbNM4h60cSgPDhKY8HfIRKAqzIlQfg==}
+
   hexo-cli@4.3.2:
     resolution: {integrity: sha512-druJeBgLpG9ncDS5AhBHdAXk0G4CFj8Qes09pApyZ6bR+nJW1JYiDMuilhudaKDdq+1l49jWXVTidkcb7p0Jbw==}
     engines: {node: '>=14'}
@@ -414,9 +417,6 @@ packages:
 
   hexo-enhancer@1.0.10:
     resolution: {integrity: sha512-Q095PEDJ7Q0Xwbp/NImt0B6YsI3W4/H+SDB3fDBS+CbEXCzorXB3uowPrS/tLC6FLC3IJHUz8dYypSlZO85E7g==}
-
-  hexo-filter-date-from-git@0.2.0:
-    resolution: {integrity: sha512-wfy12bhJPpTpKrjq8+mlk3m78TSkHgtwQWF1XzB9M4fF3ttVy4cNpCnQMbvxm+QViLf+4/DRxaWwSGMLXrZdtw==}
 
   hexo-front-matter@1.0.0:
     resolution: {integrity: sha512-Hn8IIzgWWnxYTekrjnA0rxwWMoQHifyrxKMqVibmFaRKf4AQ2V6Xo13Jiso6CDwYfS+OdA41QS5DG1Y+QXA5gw==}
@@ -1320,6 +1320,10 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
+  hexo-auto-git-date@0.1.2:
+    dependencies:
+      moment-timezone: 0.5.47
+
   hexo-cli@4.3.2:
     dependencies:
       abbrev: 2.0.0
@@ -1340,10 +1344,6 @@ snapshots:
       hexo-front-matter: 1.0.0
       hexo-fs: 3.1.0
       md5: 2.3.0
-      moment-timezone: 0.5.47
-
-  hexo-filter-date-from-git@0.2.0:
-    dependencies:
       moment-timezone: 0.5.47
 
   hexo-front-matter@1.0.0:
