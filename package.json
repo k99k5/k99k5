@@ -14,7 +14,7 @@
   "dependencies": {
     "@adobe/css-tools": "^4.4.2",
     "hexo": "^7.3.0",
-    "hexo-auto-git-date": "^0.1.3",
+    "hexo-auto-git-date": "^0.1.4",
     "hexo-enhancer": "^1.0.10",
     "hexo-fs": "^5.0.0",
     "hexo-generator-archive": "^2.0.0",
