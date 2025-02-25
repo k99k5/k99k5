@@ -239,6 +239,27 @@ custom_js:
 # The usage is the same as custom_js
 custom_css:
 
+custom_html: |
+  <script>
+    window.difyChatbotConfig = {
+    token: 'OnF75pPKHpjQEqZ7'
+    }
+  </script>
+  <script
+    src="https://udify.app/embed.min.js"
+    id="OnF75pPKHpjQEqZ7"
+    defer>
+  </script>
+  <style>
+    #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+    }
+    #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+    }
+  </style>
+
 # 网页访问统计
 # Analysis of website visitors
 web_analytics:
