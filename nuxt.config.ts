@@ -1,77 +1,128 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
+import Aura from '@primeuix/themes/aura';
 import tailwindcss from "@tailwindcss/vite";
 import {fileURLToPath, resolve} from "node:url";
-import {defineCollection} from "@nuxt/content";
+import Components from 'unplugin-vue-components/vite';
+import {PrimeVueResolver} from '@primevue/auto-import-resolver';
+import Sky from "./app/themes/sky";
 
 export default defineNuxtConfig({
-    compatibilityDate: "2024-11-01",
-    devtools: {enabled: true},
-    modules: [
-        "@nuxtjs/seo",
-        "@nuxt/content",
-        "@nuxt/image",
-        "@nuxthq/studio",
-        "@nuxt/ui",
-        "@nuxt/scripts",
-        "@nuxt/fonts",
-        "nuxt-link-checker",
-        "nuxt-schema-org",
+    extends: [
+        `./locales/${process.env?.NUXT_PUBLIC_SITE_LANG ?? 'zh-CN'}`
     ],
+
+    modules: [
+        '@primevue/nuxt-module',
+        '@nuxt/image',
+        '@nuxt/scripts',
+        '@nuxt/fonts',
+        'nuxt-link-checker',
+        'nuxt-schema-org',
+        '@nuxtjs/robots',
+        '@nuxtjs/i18n',
+        '@nuxtjs/sitemap',
+        'nuxt-seo-utils',
+        'nuxt-og-image',
+        '@nuxt/content',
+        '@nuxtjs/color-mode'
+    ],
+
+    compatibilityDate: "2024-11-01",
+
+    future: {
+        compatibilityVersion: 4
+    },
+
+    devtools: {
+        enabled: true
+    },
+
+    content: {
+        preview: {
+            api: 'https://api.nuxt.studio'
+        }
+    },
 
     fonts: {
         provider: 'bunny',
     },
 
+    nitro: {
+        prerender: {
+            routes: [
+                '/',
+                // '/sitemap.xml',
+                '/robots.txt',
+            ],
+            crawlLinks: true
+        }
+    },
+
     sitemap: {
         sitemaps: true,
         autoLastmod: true,
-        sources: ["/api/__sitemap__/urls"],
+        sources: [
+            '/api/__sitemap__/urls'
+        ],
     },
 
     ogImage: {
         zeroRuntime: true,
-        fonts: ["Noto+Sans+SC:400"],
+        fonts: [
+            'Noto+Sans+SC:400'
+        ],
         defaults: {
-            emojis: "twemoji",
+            emojis: 'twemoji',
         },
     },
 
-    hooks: {
-        // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
-        'components:extend': (components) => {
-            const globals = components.filter(c => ['UButton'].includes(c.pascalName))
-            globals.forEach(c => c.global = true)
-        }
-    },
+    hooks: {},
 
     colorMode: {
+        preference: 'system', // default value of $colorMode.preference
+        fallback: 'light',
         disableTransition: false
     },
 
-    routeRules: {
-        "/api/search.json": {
-            prerender: true,
-        },
+    runtimeConfig: {
+        public: {
+            siteUrl: '',
+        }
     },
+
+    // routeRules: {
+    //     "/api/search.json": {
+    //         prerender: true,
+    //     },
+    // },
 
     typescript: {
         strict: false,
     },
 
+    experimental: {
+        viewTransition: true,
+    },
+
     alias: {
-        "~": fileURLToPath(new URL(".", import.meta.url)),
-        "@": fileURLToPath(new URL(".", import.meta.url)),
-        "~~": fileURLToPath(new URL(".", import.meta.url)),
-        "@@": fileURLToPath(new URL(".", import.meta.url)),
+        '~': fileURLToPath(new URL(".", import.meta.url)),
+        '@': fileURLToPath(new URL(".", import.meta.url)),
+        '~~': fileURLToPath(new URL(".", import.meta.url)),
+        '@@': fileURLToPath(new URL(".", import.meta.url)),
         assets: fileURLToPath(new URL("./assets", import.meta.url)),
         public: fileURLToPath(new URL("./public", import.meta.url)),
     },
 
     css: ['~/assets/css/main.css'],
+
     vite: {
         plugins: [
             tailwindcss(),
+            Components({
+                resolvers: [
+                    PrimeVueResolver()
+                ]
+            }),
         ],
         css: {
             preprocessorOptions: {
@@ -79,4 +130,8 @@ export default defineNuxtConfig({
             },
         },
     },
+
+    primevue: {
+        importTheme: {from: '~/app/themes/sky'},
+    }
 });
