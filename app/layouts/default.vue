@@ -7,12 +7,9 @@ provide('navigation', navigation)
 </script>
 
 <template>
-	<div>
+	<Main>
 		<AppHeader/>
 		<slot/>
 		<AppFooter/>
-		<ClientOnly>
-			{{files}}
-		</ClientOnly>
-	</div>
+	</Main>
 </template>

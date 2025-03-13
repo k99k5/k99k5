@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import {fileURLToPath, resolve} from "node:url";
 import Components from 'unplugin-vue-components/vite';
 import {PrimeVueResolver} from '@primevue/auto-import-resolver';
-import Sky from "./app/themes/sky";
+import echoConfig from "./echo.config";
 
 export default defineNuxtConfig({
     extends: [
@@ -51,7 +51,7 @@ export default defineNuxtConfig({
         prerender: {
             routes: [
                 '/',
-                // '/sitemap.xml',
+                '/sitemap.xml',
                 '/robots.txt',
             ],
             crawlLinks: true
@@ -86,15 +86,15 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            siteUrl: '',
+            ...echoConfig
         }
     },
 
-    // routeRules: {
-    //     "/api/search.json": {
-    //         prerender: true,
-    //     },
-    // },
+    routeRules: {
+        "/api/search.json": {
+            prerender: true,
+        },
+    },
 
     typescript: {
         strict: false,
@@ -132,6 +132,6 @@ export default defineNuxtConfig({
     },
 
     primevue: {
-        importTheme: {from: '~/app/themes/sky'},
+        importTheme: {from: '~/app/themes/echo'},
     }
 });

@@ -1,32 +1,34 @@
 <script setup>
 const colorMode = useColorMode()
 const color = computed(() => colorMode.value === 'dark' ? '#111827' : 'white')
+const appConfig = useAppConfig()
+
 
 useHead({
     meta: [
-        {charset: 'utf-8'},
-        {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-        {key: 'theme-color', name: 'theme-color', content: color}
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { key: 'theme-color', name: 'theme-color', content: color }
     ],
     link: [
-        {rel: 'icon', href: '/favicon.ico'}
+        { rel: 'icon', href: appConfig.siteIcon }
     ],
     htmlAttrs: {
-        lang: process.env.LANG
+        lang: appConfig.siteLang || 'zh-CN'
     }
 })
 
 useSeoMeta({
-    titleTemplate: '%s - TigerKK',
+    titleTemplate: '%s - ' + appConfig.siteName,
     twitterCard: 'summary_large_image'
 })
 </script>
 
 <template>
 	<div>
-		<NuxtLoadingIndicator />
+		<NuxtLoadingIndicator/>
 		<NuxtLayout>
-			<NuxtPage />
+			<NuxtPage/>
 		</NuxtLayout>
 	</div>
 </template>

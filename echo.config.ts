@@ -1,8 +1,10 @@
-import { definePreset } from '@primeuix/themes';
-import Aura from '@primeuix/themes/aura';
+export default {
+    siteUrl: 'https://tigerkk.me/',
+    siteLang: 'zh-CN',
+    siteName: 'TigerKK',
+    siteIcon: '/favicon.ico',
 
-const MyPreset = definePreset(Aura, {
-    semantic: {
+    theme: {
         primary: {
             50: '#f0f9ff',
             100: '#e0f2fe',
@@ -16,14 +18,5 @@ const MyPreset = definePreset(Aura, {
             900: '#0c4a6e',
             950: '#082f49'
         }
-    }
-});
-
-export default {
-    preset: MyPreset,
-    options: {
-        darkModeSelector: '.p-dark'
     },
-    ripple: true,
-};
-
+}

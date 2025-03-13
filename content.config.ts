@@ -9,8 +9,9 @@ export default defineContentConfig({
             type: 'page',
             // Define the schema for each file
             schema: z.object({
-                created_date: z.string(),
-                updated_date: z.string(),
+                date: z.string(),
+                updated: z.string(),
+                layout: z.string(),
             })
         }),
         pages: defineCollection({
@@ -23,8 +24,9 @@ export default defineContentConfig({
             type: 'page',
             // Define the schema for each file
             schema: z.object({
-                created_date: z.string(),
-                updated_date: z.string(),
+                date: z.string(),
+                updated: z.string(),
+                layout: z.string(),
             })
         })
     }

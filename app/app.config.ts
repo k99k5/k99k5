@@ -1,5 +1,5 @@
-import Sky from "@/app/themes/sky";
+import echoConfig from "@/echo.config";
 
 export default defineAppConfig({
-
+    ...echoConfig
 })
