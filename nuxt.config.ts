@@ -12,19 +12,20 @@ export default defineNuxtConfig({
     ],
 
     modules: [
-        '@primevue/nuxt-module',
-        '@nuxt/image',
-        '@nuxt/scripts',
-        '@nuxt/fonts',
-        'nuxt-link-checker',
-        'nuxt-schema-org',
-        '@nuxtjs/robots',
-        '@nuxtjs/i18n',
-        '@nuxtjs/sitemap',
-        'nuxt-seo-utils',
-        'nuxt-og-image',
-        '@nuxt/content',
-        '@nuxtjs/color-mode'
+      '@primevue/nuxt-module',
+      '@nuxt/image',
+      '@nuxt/scripts',
+      '@nuxt/fonts',
+      'nuxt-link-checker',
+      'nuxt-schema-org',
+      '@nuxtjs/robots',
+      '@nuxtjs/i18n',
+      '@nuxtjs/sitemap',
+      'nuxt-seo-utils',
+      'nuxt-og-image',
+      '@nuxt/content',
+      '@nuxtjs/color-mode',
+      '@nuxt/icon'
     ],
 
     compatibilityDate: "2024-11-01",
@@ -133,5 +134,9 @@ export default defineNuxtConfig({
 
     primevue: {
         importTheme: {from: '~/app/themes/echo'},
-    }
+    },
+
+    icon: {
+        serverBundle: 'local',
+    },
 });
