@@ -6,7 +6,13 @@ const route = useRoute()
 
 const {data: page} = await useAsyncData(
     'archive',
-    () => queryCollection('pages').where('path', 'LIKE', route.path).first()
+    async () => {
+        let page = await queryCollection('pages').where('path', '=', route.path).first();
+        if (!page) {
+            page = await queryCollection('posts').where('path', '=', route.path).first();
+        }
+        return page;
+    }
 );
 
 const {data: posts} = await useAsyncData(
