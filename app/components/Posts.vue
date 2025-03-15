@@ -9,7 +9,10 @@ const {data: posts} = await useAsyncData(
 
 <template>
 	<div class="flex flex-col gap-10">
-		<NuxtLink :to="post.path" v-for="post in posts" :key="post.id" class="flex flex-col gap-5 border-1 border-gray-100 shadow-md dark:hover:bg-black hover:bg-gray-100  transition-all p-5 rounded-2xl">
+		<NuxtLink :to="post.path" v-for="post in posts" :key="post.id"
+		          class="flex flex-col gap-5 shadow-md transition-all duration-500
+		          dark:bg-black/30 dark:hover:bg-gray-800/30
+		          hover:bg-gray-300 p-5 rounded-2xl">
 			<span class="font-bold">
 				{{ post.title }}
 			</span>
