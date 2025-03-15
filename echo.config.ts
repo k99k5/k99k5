@@ -4,6 +4,8 @@ export default {
     siteName: 'TigerKK',
     siteIcon: 'https://gravatar.com/avatar/1f950bb98467b977c546a3acd0f4b6df?size=256',
 
+    autoGitDate: true,
+
     theme: {
         primary: {
             50: '#f0f9ff',

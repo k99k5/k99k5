@@ -5,6 +5,7 @@ import {fileURLToPath, resolve} from "node:url";
 import Components from 'unplugin-vue-components/vite';
 import {PrimeVueResolver} from '@primevue/auto-import-resolver';
 import echoConfig from "./echo.config";
+import {execSync} from "node:child_process";
 
 export default defineNuxtConfig({
     extends: [
@@ -43,7 +44,7 @@ export default defineNuxtConfig({
             api: 'https://api.nuxt.studio'
         },
         build: {
-            markdown:{},
+            markdown: {},
             pathMeta: {
                 slugifyOptions: {
                     remove: /[$*+~()'"!\-=#?:@]/g,
@@ -87,7 +88,19 @@ export default defineNuxtConfig({
 
     hooks: {
         'content:file:afterParse': (ctx) => {
+            // remove __posts/
             ctx.content.path = (ctx.content.path as string).replace(/__posts\//, '');
+
+            // auto set date
+            if (echoConfig.autoGitDate){
+                const dates = execSync(`git log --follow --format="%ad" -- "${ctx.file.path}"`).toString().trim().split('\n');
+                if (!ctx.content?.date) {
+                    ctx.content.date = new Date( dates[dates.length - 1] ?? Date.now()).toISOString();
+                }
+                if (!ctx.content?.updated) {
+                    ctx.content.updated = new Date( dates[0] ?? Date.now()).toISOString();
+                }
+            }
         }
     },
 
