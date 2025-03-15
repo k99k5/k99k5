@@ -13,6 +13,7 @@ export default defineContentConfig({
                 date: z.string(),
                 updated: z.string(),
                 layout: z.string(),
+                navigation: z.boolean().default(false),
                 status: z.string().default('publish'),
             })
         }),
@@ -30,6 +31,7 @@ export default defineContentConfig({
                 date: z.string(),
                 updated: z.string(),
                 layout: z.string(),
+                navigation: z.boolean().default(false),
                 status: z.string().default('publish'),
             })
         })

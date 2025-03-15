@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 
-const {data: navigation} = await useAsyncData('navigation', () => queryCollectionNavigation('pages'), {default: () => []})
+const {data: navigation} = await useAsyncData(
+    'navigation',
+	() => queryCollectionNavigation('pages')
+		.where('navigation', '=', true)
+		.where('status','=','publish'),
+	{default: () => []}
+)
 const {data: files} = useLazyFetch('/api/search.json', {default: () => [], server: false})
 
 provide('navigation', navigation)
