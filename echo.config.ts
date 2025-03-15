@@ -6,6 +6,8 @@ export default {
 
     autoGitDate: true,
 
+    defaultTimeZone: 'Asia/Shanghai',
+
     theme: {
         primary: {
             50: '#f0f9ff',

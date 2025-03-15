@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import {format} from "date-fns";
+import echoConfig from "../../echo.config";
+import { tz } from "@date-fns/tz";
+
 const {data: posts} = await useAsyncData(
     'posts',
     () => queryCollection('posts').all()
@@ -16,10 +20,10 @@ const {data: posts} = await useAsyncData(
 			<span class="font-bold">
 				{{ post.title }}
 			</span>
-			<span>
+			<span >
 				{{ post.description }}
 			</span>
-			<Image alt="Image">
+			<Image alt="Image" v-if="post.image">
 				<template #previewicon>
 					<i class="pi pi-search"></i>
 				</template>
@@ -30,8 +34,19 @@ const {data: posts} = await useAsyncData(
 					<img :src="post.image" :style="slotProps.style"  :alt="post.title"/>
 				</template>
 			</Image>
-			<div>
-				{{ post.date }}
+			<div class="text-gray-400">
+				<ClientOnly>
+					{{
+						format(new Date(post.date), 'yyyy-MM-dd')
+					}}
+					<template #fallback>
+						{{
+							format(new Date(post.date), 'yyyy-MM-dd', {
+								in: tz(echoConfig.defaultTimeZone),
+							})
+						}}
+					</template>
+				</ClientOnly>
 			</div>
 		</NuxtLink>
 	</div>

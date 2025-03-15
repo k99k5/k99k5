@@ -101,6 +101,11 @@ export default defineNuxtConfig({
                     ctx.content.updated = new Date( dates[0] ?? Date.now()).toISOString();
                 }
             }
+
+            // remove \n
+            if (ctx.content.description){
+                ctx.content.description = (ctx.content.description as string).replace(/[\n\\n]+/g, ' ').trim();
+            }
         }
     },
 
