@@ -11,7 +11,7 @@ const route = useRoute();
 <template>
 	<nav class="flex-1 flex items-center justify-between gap-5">
 		<NuxtLink to="/">
-			<NuxtImg :src="appConfig.siteIcon" class="rounded-full" height="60px" width="60px"/>
+			<NuxtImg :src="appConfig.siteIcon" class="rounded-full" height="50px" width="50px"/>
 		</NuxtLink>
 		<ul class="flex-1 flex justify-end items-center gap-5">
 			<li v-for="item in navigation" class="flex justify-center">
