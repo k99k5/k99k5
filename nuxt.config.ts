@@ -42,6 +42,14 @@ export default defineNuxtConfig({
         preview: {
             api: 'https://api.nuxt.studio'
         },
+        build: {
+            markdown:{},
+            pathMeta: {
+                slugifyOptions: {
+                    remove: /[$*+~()'"!\-=#?:@]/g,
+                }
+            }
+        }
     },
 
     fonts: {
@@ -77,7 +85,11 @@ export default defineNuxtConfig({
         },
     },
 
-    hooks: {},
+    hooks: {
+        'content:file:afterParse': (ctx) => {
+            ctx.content.path = (ctx.content.path as string).replace(/__posts\//, '');
+        }
+    },
 
     colorMode: {
         preference: 'system', // default value of $colorMode.preference

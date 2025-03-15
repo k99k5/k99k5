@@ -7,18 +7,25 @@ const route = useRoute()
 const {data: page} = await useAsyncData(
     'archive',
     async () => {
-        let page = await queryCollection('pages').where('path', '=', route.path).first();
+        let page = await queryCollection('pages')
+            .where('status', '=', 'publish')
+            .orWhere(query => query
+                .where('path', '=', decodeURIComponent(route.path))
+                .where('path', '=', route.path)
+            )
+            .first();
         if (!page) {
-            page = await queryCollection('posts').where('path', '=', route.path).first();
+            page = await queryCollection('posts')
+                .where('status', '=', 'publish')
+                .orWhere(query => query
+                    .where('path', '=', decodeURIComponent(route.path))
+                    .where('path', '=', route.path)
+                )
+                .first();
         }
         return page;
     }
 );
-
-const {data: posts} = await useAsyncData(
-    route.path,
-    () => queryCollection('posts').all()
-)
 
 if (!page.value) {
     throw createError({statusCode: 404, statusMessage: t('Page not found'), fatal: true})
@@ -37,7 +44,7 @@ defineOgImageComponent('Saas')
 
 <template>
 	<template v-if="page">
-		<ContentRenderer v-if="!['archive'].includes(page?.layout)" :data="{posts}" :value="page"/>
-		<Posts v-else-if="['archive'].includes(page?.layout)" :posts="posts"></Posts>
+		<ContentRenderer v-if="!['archive'].includes(page?.layout)" :value="page"/>
+		<Posts v-else-if="['archive'].includes(page?.layout)"></Posts>
 	</template>
 </template>
