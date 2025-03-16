@@ -8,6 +8,15 @@ export default {
 
     defaultTimeZone: 'Asia/Shanghai',
 
+    libs: {
+        bsz: {
+            enable: true,
+            src: 'https://lib.baomitu.com/busuanzi/2.3.0/bsz.pure.mini.js',
+        },
+
+    },
+
+
     theme: {
         primary: {
             50: '#f0f9ff',

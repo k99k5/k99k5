@@ -23,12 +23,9 @@ const {data: posts} = await useAsyncData(
 			<span >
 				{{ post.description }}
 			</span>
-			<Image alt="Image" v-if="post.image">
+			<Image alt="Image" v-if="post.image" :src="post.image" width="475px" height="auto" class="rounded-2xl overflow-hidden">
 				<template #previewicon>
-					<i class="pi pi-search"></i>
-				</template>
-				<template #image>
-					<NuxtPicture :src="post.image" width="475px" height="auto"/>
+					<i></i>
 				</template>
 				<template #preview="slotProps">
 					<img :src="post.image" :style="slotProps.style"  :alt="post.title"/>

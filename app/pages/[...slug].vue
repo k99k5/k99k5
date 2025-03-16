@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import {useI18n} from 'vue-i18n'
+import {format} from "date-fns";
+import {tz} from "@date-fns/tz";
+import echoConfig from "~/echo.config";
 
 const {t} = useI18n()
 const route = useRoute()
@@ -44,7 +47,12 @@ defineOgImageComponent('Saas')
 
 <template>
 	<template v-if="page">
-		<ContentRenderer v-if="!['archive'].includes(page?.layout)" :value="page"/>
+		<template v-if="!['archive'].includes(page?.layout)">
+			<Page :page="page"></Page>
+		</template>
 		<Posts v-else-if="['archive'].includes(page?.layout)"></Posts>
 	</template>
 </template>
+
+<style lang="scss" scoped>
+</style>
