@@ -16,6 +16,7 @@ export default defineContentConfig({
                 navigation: z.boolean().default(false),
                 status: z.string().default('publish'),
                 tags: z.array(z.string()).optional(),
+                priority: z.number().default(10000),
             })
         }),
         pages: defineCollection({
@@ -35,6 +36,7 @@ export default defineContentConfig({
                 navigation: z.boolean().default(false),
                 status: z.string().default('publish'),
                 tags: z.array(z.string()).optional(),
+                priority: z.number().default(10000),
             })
         })
     }

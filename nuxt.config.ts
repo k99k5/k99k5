@@ -89,16 +89,22 @@ export default defineNuxtConfig({
     hooks: {
         'content:file:afterParse': (ctx) => {
             // remove __posts/
-            ctx.content.path = (ctx.content.path as string).replace(/__posts\//, '');
+            ctx.content.path = (ctx.content.path as string).replace(/__posts\//, '') as string;
+
+            // priority
+            if (/\/[0-9]+\./.test(ctx.file.path)){
+                const priority = ctx.file.path.match(/[0-9]+\./)?.[0]?.replace('.', '') || '0';
+                ctx.content.priority = parseInt(priority);
+            }
 
             // auto set date
             if (echoConfig.autoGitDate){
                 const dates = execSync(`git log --follow --format="%ad" -- "${ctx.file.path}"`).toString().trim().split('\n');
                 if (!ctx.content?.date) {
-                    ctx.content.date = new Date( dates[dates.length - 1] ?? Date.now()).toISOString();
+                    ctx.content.date = new Date( dates[dates.length - 1] || Date.now()).toISOString();
                 }
                 if (!ctx.content?.updated) {
-                    ctx.content.updated = new Date( dates[0] ?? Date.now()).toISOString();
+                    ctx.content.updated = new Date( dates[0] || Date.now()).toISOString();
                 }
             }
 

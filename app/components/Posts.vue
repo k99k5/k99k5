@@ -9,6 +9,10 @@ const props = defineProps({
         type: String,
         required: false,
     },
+	limit: {
+		type: Number,
+		required: false,
+	},
 })
 
 const {data: posts, refresh} = await useAsyncData(
@@ -20,13 +24,20 @@ const {data: posts, refresh} = await useAsyncData(
         if (props.tag){
             query = query.where('tags', 'LIKE', `%${props.tag}%`)
         }
+        
+        if (props.limit){
+            query = query.limit(props.limit)
+        }
 	    
-        return query.all();
+        return query
+            .order('priority', 'ASC')
+	        .order('date', 'DESC')
+	        .all();
     }
     
 )
 
-watch(() => props.tag, () => refresh())
+watch(() => props, () => refresh(), {deep: true})
 </script>
 
 <template>
