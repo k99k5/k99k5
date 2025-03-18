@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import {useI18n} from 'vue-i18n'
-import {format} from "date-fns";
-import {tz} from "@date-fns/tz";
-import echoConfig from "~/echo.config";
 
 const {t} = useI18n()
 const route = useRoute()
