@@ -9,15 +9,17 @@ const tags = [t('全部')].concat(
     .flat()
     .filter((tag, index, self) => self.indexOf(tag) === index)
 )
+const route = useRoute()
+const currentTag = computed(() => String(route.query?.tag || t('全部')))
 </script>
 
 <template>
 	<div class="flex flex-wrap gap-2">
-		<NuxtLink v-for="tag in tags" :to="{query:{tags: tag}}" class="!p-0">
-			<Tag :severity="'secondary'" :value="tag" class="!py-2 !px-3"></Tag>
+		<NuxtLink v-for="tag in tags" :to="{query:{tag: tag}}" class="!p-0">
+			<Tag :severity="currentTag == tag ? null : 'secondary'" :value="tag" class="!py-2 !px-3"></Tag>
 		</NuxtLink>
 	</div>
-	<Posts></Posts>
+	<Posts :tag="currentTag == t('全部') ? null : currentTag"></Posts>
 </template>
 
 <style scoped>

@@ -1,34 +1,53 @@
 <script lang="ts" setup>
 import {format} from "date-fns";
 import echoConfig from "../../echo.config";
-import { tz } from "@date-fns/tz";
+import {tz} from "@date-fns/tz";
+import {computedAsync} from "@vueuse/core";
 
-const {data: posts} = await useAsyncData(
+const props = defineProps({
+    tag: {
+        type: String,
+        required: false,
+    },
+})
+
+const {data: posts, refresh} = await useAsyncData(
     'posts',
-    () => queryCollection('posts').all()
+    () => {
+        let query = queryCollection('posts')
+            .where('status', '=', 'publish');
+        
+        if (props.tag){
+            query = query.where('tags', 'LIKE', `%${props.tag}%`)
+        }
+	    
+        return query.all();
+    }
+    
 )
 
-
+watch(() => props.tag, () => refresh())
 </script>
 
 <template>
 	<div class="flex flex-col gap-10">
-		<NuxtLink :to="post.path" v-for="post in posts" :key="post.id"
+		<NuxtLink v-for="post in posts" :key="post.id" :to="post.path"
 		          class="flex flex-col gap-5 shadow-md transition-all duration-500
 		          dark:bg-black/30 dark:hover:bg-gray-800/30
 		          hover:bg-gray-300 p-5 rounded-2xl">
 			<span class="font-bold">
 				{{ post.title }}
 			</span>
-			<span >
+			<span>
 				{{ post.description }}
 			</span>
-			<Image alt="Image" v-if="post.image" :src="post.image" width="475px" height="auto" class="rounded-2xl overflow-hidden">
+			<Image v-if="post.image" :src="post.image" alt="Image" class="rounded-2xl overflow-hidden" height="auto"
+			       width="475px">
 				<template #previewicon>
 					<i></i>
 				</template>
 				<template #preview="slotProps">
-					<img :src="post.image" :style="slotProps.style"  :alt="post.title"/>
+					<img :alt="post.title" :src="post.image" :style="slotProps.style"/>
 				</template>
 			</Image>
 			<div class="text-gray-400">
