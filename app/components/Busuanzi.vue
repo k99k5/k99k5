@@ -4,7 +4,9 @@ const route = useRoute();
 const {t} = useI18n();
 
 function loadScript() {
-    console.log(1)
+    if (import.meta.env.SSR) {
+        return;
+    }
     if (document.getElementById('busuanzi')) {
         document.getElementById('busuanzi').remove();
     }
