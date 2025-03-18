@@ -27,7 +27,7 @@ watch(() => route.fullPath, () => loadScript(), {immediate: true})
 </script>
 
 <template>
-	<div v-if="appConfig.libs.bsz.enable" class="text-sm text-gray-500">
+	<div v-if="appConfig.libs.bsz.enable" class="text-sm text-gray-500 flex gap-3">
 		<div id="busuanzi_container_site_pv" style="display:none">
 			{{ t('访问量') }}
 			<span id="busuanzi_value_site_pv"></span>
