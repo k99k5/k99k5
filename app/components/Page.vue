@@ -42,7 +42,7 @@ const page = computed(() => props.page);
 		</div>
 	</div>
 	<ContentRenderer :value="page" class="prose dark:prose-invert"/>
-	<Tags :tags="page.meta.tags"></Tags>
+	<Tags :tags="page.tags"></Tags>
 </template>
 
 <style scoped>
