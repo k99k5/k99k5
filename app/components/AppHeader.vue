@@ -9,7 +9,7 @@ const route = useRoute();
 </script>
 
 <template>
-	<nav class="flex-1 flex items-center justify-between gap-5">
+	<nav class="flex items-center justify-between gap-5">
 		<NuxtLink to="/">
 			<NuxtImg :src="appConfig.siteIcon" class="rounded-full" height="50px" width="50px"/>
 		</NuxtLink>

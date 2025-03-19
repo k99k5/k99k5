@@ -6,8 +6,11 @@ import Components from 'unplugin-vue-components/vite';
 import {PrimeVueResolver} from '@primevue/auto-import-resolver';
 import echoConfig from "./echo.config";
 import {execSync} from "node:child_process";
+import { title } from 'node:process';
 
 export default defineNuxtConfig({
+    appId: echoConfig.siteName,
+
     extends: [
         `./locales/${process.env?.NUXT_PUBLIC_SITE_LANG ?? 'zh-CN'}`
     ],
@@ -121,9 +124,17 @@ export default defineNuxtConfig({
         disableTransition: false
     },
 
+    site: {
+        title: echoConfig.siteName,
+        description: echoConfig.siteDescription,
+        url: echoConfig.siteUrl,
+        name: echoConfig.siteName,
+    },
+
     runtimeConfig: {
         public: {
-            ...echoConfig
+            ...echoConfig,
+            appName: echoConfig.siteName,
         }
     },
 
