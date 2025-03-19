@@ -91,8 +91,8 @@ export default defineNuxtConfig({
 
     hooks: {
         'content:file:afterParse': (ctx) => {
-            // remove __posts/
-            ctx.content.path = (ctx.content.path as string).replace(/__posts\//, '') as string;
+            // remove _posts/
+            ctx.content.path = (ctx.content.path as string).replace(/_posts\//, '') as string;
 
             // priority
             if (/\/[0-9]+\./.test(ctx.file.path)){

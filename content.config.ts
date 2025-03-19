@@ -4,7 +4,7 @@ export default defineContentConfig({
     collections: {
         posts: defineCollection({
             // Load every file inside the `content` directory
-            source: '__posts/**',
+            source: '_posts/**',
             // Specify the type of content in this collection
             type: 'page',
             // Define the schema for each file
@@ -23,7 +23,7 @@ export default defineContentConfig({
             // Load every file inside the `content` directory
             source: {
                 include: '**',
-                exclude: ['**/__posts/**'],
+                exclude: ['**/_posts/**'],
             },
             // Specify the type of content in this collection
             type: 'page',
