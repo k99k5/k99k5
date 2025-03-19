@@ -7,6 +7,7 @@ const tags = [t('全部')].concat(
     )
     .map(post => post?.tags)
     .flat()
+	.filter(tag => !!tag)
     .filter((tag, index, self) => self.indexOf(tag) === index)
 )
 const route = useRoute()
