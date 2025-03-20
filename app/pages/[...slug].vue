@@ -7,20 +7,19 @@ const route = useRoute()
 const {data: page} = await useAsyncData(
     'archive',
     async () => {
+        const cleanPath = (path: string) =>
+            decodeURIComponent(path).replace(/\/+$/, "").toLowerCase();
+        const targetPath = cleanPath(route.path);
+
+
         let page = await queryCollection('pages')
             .where('status', '=', 'publish')
-            .orWhere(query => query
-                .where('path', '=', rtrim(decodeURIComponent(route.path),'/'))
-                .where('path', '=', rtrim(route.path,'/'))
-            )
+            .path(targetPath)
             .first();
         if (!page) {
             page = await queryCollection('posts')
                 .where('status', '=', 'publish')
-                .orWhere(query => query
-                    .where('path', '=', rtrim(decodeURIComponent(route.path),'/'))
-                    .where('path', '=', rtrim(route.path,'/'))
-                )
+                .path(targetPath)
                 .first();
         }
         return page;
@@ -28,16 +27,7 @@ const {data: page} = await useAsyncData(
 );
 
 if (!page.value) {
-    throw createError({statusCode: 404, statusMessage: t('Page not found'), fatal: true})
-}
-
-function rtrim(str: string, char: string) {
-    if (!char) {
-        return str.trimEnd();
-    }
-    const escapedChar = char.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // 转义特殊字符
-    const regex = new RegExp(`${escapedChar}+$`);
-    return str.replace(regex, '');
+    throw createError({statusCode: 404, statusMessage: t('页面不存在'), fatal: true})
 }
 
 useSeoMeta({
