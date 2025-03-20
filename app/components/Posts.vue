@@ -6,7 +6,6 @@ import {computedAsync} from "@vueuse/core";
 
 const props = defineProps({
     tag: {
-        type: String,
         required: false,
     },
 	limit: {
@@ -15,7 +14,8 @@ const props = defineProps({
 	},
 	shadow:{
         type: Boolean,
-        required: true,
+        required: false,
+        default: true,
 	}
 })
 
