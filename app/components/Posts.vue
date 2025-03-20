@@ -27,10 +27,11 @@ const {data: posts, refresh} = await useAsyncData(
         
         if (props.limit){
             query = query.limit(props.limit)
+        }else{
+            query = query.order('priority', 'ASC')
         }
 	    
         return query
-            .order('priority', 'ASC')
 	        .order('date', 'DESC')
 	        .all();
     }
@@ -41,7 +42,7 @@ watch(() => props, () => refresh(), {deep: true})
 </script>
 
 <template>
-	<div class="flex flex-col gap-10">
+	<div class="flex flex-col gap-10 not-prose">
 		<NuxtLink v-for="post in posts" :key="post.id" :to="post.path"
 		          class="flex flex-col gap-5 shadow-md transition-all duration-500
 		          dark:bg-black/30 dark:hover:bg-gray-800/30
