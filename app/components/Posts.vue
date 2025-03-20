@@ -13,6 +13,10 @@ const props = defineProps({
 		type: Number,
 		required: false,
 	},
+	shadow:{
+        type: Boolean,
+        required: true,
+	}
 })
 
 const {data: posts, refresh} = await useAsyncData(
@@ -44,9 +48,11 @@ watch(() => props, () => refresh(), {deep: true})
 <template>
 	<div class="flex flex-col gap-10 not-prose">
 		<NuxtLink v-for="post in posts" :key="post.id" :to="post.path"
-		          class="flex flex-col gap-5 shadow-md transition-all duration-500
+		          class="flex flex-col gap-5 transition-all duration-500
 		          dark:bg-black/30 dark:hover:bg-gray-800/30
-		          hover:bg-gray-300 p-5 rounded-2xl">
+		          hover:bg-gray-300 p-5 rounded-2xl"
+		          :class="{'shadow-md': props.shadow}"
+		>
 			<span class="font-bold">
 				{{ post.title }}
 			</span>
