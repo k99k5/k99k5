@@ -44,18 +44,10 @@ const page = computed(() => props.page);
 			</Image>
 		</div>
 	</div>
-	<ContentRenderer :value="page"class="prose prose-stone dark:prose-invert"/>
+	<ContentRenderer :value="page" class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert"/>
 	<Tags :tags="page.tags"></Tags>
 </template>
 
 <style lang="scss" scoped>
-.prose{
-    ::v-deep(a) {
-        text-decoration: unset !important;
 
-        &:hover {
-            --tw-prose-links: var(--p-primary-500);
-        }
-    }
-}
 </style>

@@ -2,7 +2,8 @@
 const props = defineProps({
 	tags: {
 		type: Array,
-		required: true,
+		required: false,
+		default: () => [],
 	},
 })
 </script>
