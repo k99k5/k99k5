@@ -15,7 +15,7 @@ provide('navigation', navigation)
 <template>
 	<Main>
 		<AppHeader/>
-		<div class="flex-1 flex flex-col gap-10">
+		<div class="flex-1 flex flex-col">
 			<slot/>
 		</div>
 		<AppFooter/>
