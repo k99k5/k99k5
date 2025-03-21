@@ -12,9 +12,20 @@ const tags = [t('全部')].concat(
 )
 const route = useRoute()
 const currentTag = computed(() => String(route.query?.tag || t('全部')))
+
+
+const props = defineProps({
+    page: {
+        type: Object,
+        required: false,
+    },
+});
+
+const page = computed(() => props.page || null);
 </script>
 
 <template>
+	<ContentRenderer v-if="page" :value="page" class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert"/>
 	<div class="flex-1 flex flex-col gap-10">
 		<div class="flex flex-wrap gap-2">
 			<NuxtLink v-for="tag in tags" :to="{query:{tag: tag}}" class="!p-0">

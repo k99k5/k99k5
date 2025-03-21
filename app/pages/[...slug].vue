@@ -46,7 +46,7 @@ defineOgImageComponent('Saas')
 			<Page :page="page"></Page>
 		</template>
 		<template v-else-if="['archive'].includes(page?.layout)">
-			<Archive></Archive>
+			<Archive :page="page"></Archive>
 		</template>
 	</template>
 </template>
