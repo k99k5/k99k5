@@ -17,7 +17,7 @@ const route = useRoute();
 			<li v-for="item in navigation" class="flex justify-center">
 				<NuxtLink
 					:to="item.path"
-					class="transition-all duration-300 text-normal"
+					class="text-normal"
 					:class="{
 						'text-primary': route.path === item.path,
 						'text-gray-500': route.path !== item.path,
