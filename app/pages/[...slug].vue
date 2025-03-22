@@ -4,14 +4,13 @@ import {useI18n} from 'vue-i18n'
 const {t} = useI18n()
 const route = useRoute()
 
+const cleanPath = (path: string) =>
+    decodeURIComponent(path).replace(/\/+$/, "").toLowerCase();
+
 const {data: page} = await useAsyncData(
-    'archive',
+    route.path,
     async () => {
-        const cleanPath = (path: string) =>
-            decodeURIComponent(path).replace(/\/+$/, "").toLowerCase();
         const targetPath = cleanPath(route.path);
-
-
         let page = await queryCollection('pages')
             .where('status', '=', 'publish')
             .path(targetPath)
