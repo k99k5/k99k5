@@ -37,7 +37,7 @@ const route = useRoute();
 						</template>
 					</ToggleSwitch>
 					<template #fallback>
-						<ToggleSwitch>
+						<ToggleSwitch false-value="light" true-value="dark">
 							<Icon name="heroicons:sun"/>
 						</ToggleSwitch>
 					</template>
