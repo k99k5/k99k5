@@ -121,7 +121,7 @@ export default defineNuxtConfig({
     colorMode: {
         preference: 'system', // default value of $colorMode.preference
         fallback: 'light',
-        disableTransition: false
+        disableTransition: true
     },
 
     site: {
