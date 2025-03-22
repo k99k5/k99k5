@@ -26,7 +26,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
         '@nuxtjs/sitemap',
         'nuxt-seo-utils',
-        // 'nuxt-og-image',
+        'nuxt-og-image',
         '@nuxt/content',
         '@nuxtjs/color-mode',
         '@nuxt/icon'
