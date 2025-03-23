@@ -8,23 +8,21 @@ const props = defineProps({
     },
 })
 
-const allTags = [].concat(
-    (await queryCollection('posts')
-            .where('status', '=', 'publish')
-            .all()
-    )
-        .map(post => post?.tags)
-        .flat()
-        .filter(tag => !!tag)
-        .filter((tag, index, self) => self.indexOf(tag) === index)
-)
-
-const computedTags = computed(() => {
-    if (props.tags) {
-        return props.tags
+const {data: computedTags, refresh} = await useAsyncData(
+    props.tags ? JSON.stringify(props.tags) : 'tags',
+    async() => {
+        return [].concat(
+            (await queryCollection('posts')
+                    .where('status', '=', 'publish')
+                    .all()
+            )
+                .map(post => post?.tags)
+                .flat()
+                .filter(tag => !!tag)
+                .filter((tag, index, self) => self.indexOf(tag) === index)
+        );
     }
-    return allTags
-})
+)
 </script>
 
 <template>
