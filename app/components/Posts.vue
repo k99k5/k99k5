@@ -21,8 +21,12 @@ const props = defineProps({
     }
 })
 
+const fetchKey = computed(() => {
+    return `data-${props.tag || 'all'}-${props.limit || 'default'}-${props.theme}`
+})
+
 const {data: posts, refresh} = await useAsyncData(
-    'posts',
+    fetchKey.value,
     () => {
         let query = queryCollection('posts')
             .where('status', '=', 'publish');
