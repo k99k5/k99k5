@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import {useI18n} from 'vue-i18n'
+import Archive from "~/app/components/pages/Archive.vue";
+import Page from "~/app/components/pages/Page.vue";
 
 const {t} = useI18n()
 const route = useRoute()

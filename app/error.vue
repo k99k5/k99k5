@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import AppError from "~/app/components/layouts/AppError.vue";
+
 const { t } = useI18n()
 import type { NuxtError } from '#app'
 

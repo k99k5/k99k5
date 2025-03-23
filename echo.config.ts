@@ -14,7 +14,10 @@ export default {
             enable: true,
             src: 'https://lib.baomitu.com/busuanzi/2.3.0/bsz.pure.mini.js',
         },
+    },
 
+    links: {
+        tags: '/tags/:tag',
     },
 
 

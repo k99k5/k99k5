@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 
+import Main from "~/app/components/layouts/Main.vue";
+import AppHeader from "~/app/components/layouts/AppHeader.vue";
+import AppFooter from "~/app/components/layouts/AppFooter.vue";
+
 const {data: navigation} = await useAsyncData(
     'navigation',
 	() => queryCollectionNavigation('pages')
