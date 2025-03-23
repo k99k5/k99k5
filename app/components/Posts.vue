@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {format} from "date-fns";
-import echoConfig from "../../echo.config";
+import echoConfig from "./../../echo.config";
 import {tz} from "@date-fns/tz";
 import {useI18n} from "vue-i18n";
 
@@ -21,8 +21,12 @@ const props = defineProps({
     }
 })
 
+const fetchKey = computed(() => {
+    return `data-${props.tag || 'all'}-${props.limit || 'default'}-${props.theme}`
+})
+
 const {data: posts, refresh} = await useAsyncData(
-    'posts',
+    fetchKey.value,
     () => {
         let query = queryCollection('posts')
             .where('status', '=', 'publish');
