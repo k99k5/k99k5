@@ -20,7 +20,7 @@ const computedTags = computed(() => {
     return [t('全部')].concat(tags.value)
 })
 const route = useRoute()
-const currentTag = computed(() => String(route.query?.tag ||route.params?.tag || t('全部')))
+const currentTag = computed(() => String(route.query?.tag || route.params?.tag || t('全部')))
 
 
 const props = defineProps({
@@ -31,10 +31,16 @@ const props = defineProps({
 });
 
 const page = computed(() => props.page || null);
+
+useSeoMeta({
+    title: currentTag.value != t('全部') ? currentTag.value : (page.value?.title || currentTag.value),
+	description: page.value?.description,
+})
 </script>
 
 <template>
-	<ContentRenderer v-if="page" :value="page" class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert"/>
+	<ContentRenderer v-if="page" :value="page"
+	                 class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert"/>
 	<div class="flex-1 flex flex-col gap-10">
 		<div class="flex flex-wrap gap-2">
 			<NuxtLink v-for="(tag,idx) in computedTags" :to="formatLinks(appConfig.links.tags,{tag})" class="!p-0">

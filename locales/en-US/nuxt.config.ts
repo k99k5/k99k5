@@ -19,6 +19,9 @@ export default defineNuxtConfig({
                 file: resolve(__dirname, 'theme.json')
             },
         ],
+        bundle: {
+            optimizeTranslationDirective: false,
+        },
         //@ts-ignore
         defaultLocale: 'en-US',
     }
