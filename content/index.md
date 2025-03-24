@@ -3,14 +3,12 @@ title: 首页
 description: 首页
 navigation: false
 ---
-::BlockTitle{:title="最近"}
-::
-::Posts{:limit=1 :theme="style1"}
+::Block{:title="最近" :theme="none"}
+    ::Posts{:limit=1 :theme="style1"}
+    ::
 ::
 
-::BlockTitle{:title="技术栈"}
-::
-::Block{}
+::Block{:title="技术栈"}
 - Vue
 - Vite
 - Nuxt
@@ -18,18 +16,14 @@ navigation: false
 - PHP
 ::
 
-::BlockTitle{:title="在听"}
-::
-::Block{}
+::Block{:title="在听"}
 - 1
 - 2
 - 3
 ::
 
-::BlockTitle{:title="标签"}
-::
-::Block{}
-::Tags{}
-::
+::Block{:title="标签"}
+    ::Tags{}
+    ::
 ::
 
