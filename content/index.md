@@ -9,17 +9,15 @@ navigation: false
 ::
 
 ::Block{:title="技术栈"}
-- Vue
+- Vue.js
 - Vite
 - Nuxt
-- TypeScript
+- JavaScript
 - PHP
 ::
 
 ::Block{:title="在听"}
-- 1
-- 2
-- 3
+- 莫妮卡 - 柳爽
 ::
 
 ::Block{:title="标签"}
