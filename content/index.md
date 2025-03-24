@@ -3,12 +3,13 @@ title: 首页
 description: 首页
 navigation: false
 ---
-::Block{:title="最近" :theme="none"}
-    ::Posts{:limit=1 :theme="style1"}
-    ::
+
+::block{:theme="none" :title="最近"}
+  :::posts{:limit='1' :theme="style1"}
+  :::
 ::
 
-::Block{:title="技术栈"}
+::block{:title="技术栈"}
 - Vue.js
 - Vite
 - Nuxt
@@ -16,11 +17,11 @@ navigation: false
 - PHP
 ::
 
-::Block{:title="在听"}
+::block{:title="在听"}
 - 莫妮卡 - 柳爽
 ::
 
-::Block{:title="标签"}
-    ::Tags{}
-    ::
+::block{:title="标签"}
+  :::tags
+  :::
 ::
