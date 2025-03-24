@@ -45,7 +45,7 @@ const page = computed(() => props.page);
 		</div>
 	</div>
 	<ContentRenderer :value="page" class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert my-5"/>
-	<Tags :tags="page.tags ?? []"></Tags>
+	<Tags v-if="page.tags" :tags="page.tags"></Tags>
 </template>
 
 <style lang="scss" scoped>
