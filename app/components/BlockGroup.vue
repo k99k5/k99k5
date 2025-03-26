@@ -69,13 +69,12 @@ defineExpose({initScrollAnimation});
 <style lang="css" scoped>
 @reference "../../assets/css/main.css";
 
-/* 基础样式 */
 .block-group ::v-deep(.block-group-container) > ul {
-    @apply grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5 p-0 list-none m-0;
+    @apply grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2 p-0 list-none m-0;
 }
 
 .block-group ::v-deep(.block-group-container) > ul > li {
-    @apply border border-gray-200 dark:border-gray-200/21 rounded-lg p-4 transition-all duration-300 font-bold whitespace-nowrap overflow-hidden;
+    @apply border border-gray-200 dark:border-gray-200/21 rounded-lg p-4 transition-all duration-300 font-bold whitespace-nowrap overflow-hidden m-0;
 
 }
 
