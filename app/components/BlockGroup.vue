@@ -25,7 +25,6 @@ const SCROLL_SPEED = 50; // 像素/秒
 // 初始化滚动动画
 const initScrollAnimation = () => {
     const cards = document.querySelectorAll('.block-group-container ul > li');
-
     cards.forEach(card => {
         const descContainer = card.querySelector('ul') as HTMLElement | null;
         const descText = card.querySelector('ul > li') as HTMLElement | null;
@@ -34,21 +33,12 @@ const initScrollAnimation = () => {
             return;
         }
 
-        descContainer.style.setProperty('--container-width', `${descContainer.clientWidth}px`);
-
         const scrollDistance = descText.scrollWidth - descContainer.clientWidth;
         const duration = scrollDistance / SCROLL_SPEED;
-
-        card.addEventListener('mouseenter', () => {
-            descText.style.animation = `text-scroll ${duration}s linear forwards`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            descText.style.animation = 'none';
-            requestAnimationFrame(() => {
-                descText.style.transform = 'translateX(0)';
-            });
-        });
+        
+        descContainer.classList.add('is-overflow');
+        descContainer.style.setProperty('--container-width', `${descContainer.clientWidth}px`);
+        descContainer.style.setProperty('--scroll-distance', `${scrollDistance}px`);
     });
 };
 
@@ -81,11 +71,11 @@ defineExpose({initScrollAnimation});
 
 /* 基础样式 */
 .block-group ::v-deep(.block-group-container) > ul {
-    @apply grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5 p-0 list-none;
+    @apply grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5 p-0 list-none m-0;
 }
 
 .block-group ::v-deep(.block-group-container) > ul > li {
-    @apply border border-gray-200 dark:border-gray-200/21 rounded-lg p-4 transition-all duration-300 font-bold;
+    @apply border border-gray-200 dark:border-gray-200/21 rounded-lg p-4 transition-all duration-300 font-bold whitespace-nowrap overflow-hidden;
 
 }
 
@@ -98,17 +88,15 @@ defineExpose({initScrollAnimation});
 }
 
 .block-group ::v-deep(.block-group-container) > ul > li > ul > li {
-    @apply whitespace-nowrap inline-block relative will-change-transform text-gray-600 dark:text-gray-400 font-normal pt-1 p-0 m-0;
-    animation-name: text-scroll !important;
+    @apply whitespace-nowrap inline-block relative will-change-transform text-gray-600 dark:text-gray-400 font-normal pt-1 p-0 m-0 transition-all;
 }
 
-/* 动画关键帧 */
-@keyframes text-scroll{
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-100% + var(--container-width)));
-    }
+.block-group ::v-deep(.block-group-container) >  ul > li:hover > ul.is-overflow > li {
+    display: block;
+    text-overflow: none;
+    transform: translateX(calc(-30% - var(--scroll-distance)));
+    transition: transform 3s ease-out;
+    white-space: nowrap;
 }
+
 </style>
