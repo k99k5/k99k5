@@ -3,6 +3,7 @@ title: 首页
 description: 首页
 navigation: false
 ---
+### 👋 你好，我是TigerKK
 
 ::block{:theme="none" :title="最近"}
   :::posts{:limit='1' :theme="style1"}
@@ -26,7 +27,7 @@ navigation: false
 - 莫妮卡
   - 柳爽
 - 群青
-  - YOASOBI 
+  - YOASOBI
 ::
 
 ::block{:title="标签"}
