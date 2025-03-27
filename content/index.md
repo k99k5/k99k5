@@ -17,8 +17,9 @@ navigation: false
 - PHP
 ::
 
-::block{:title="在听"}
-- 莫妮卡 - 柳爽
+::block-group{:title="在听"}
+- 莫妮卡
+    - 柳爽
 ::
 
 ::block{:title="标签"}

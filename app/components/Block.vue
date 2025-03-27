@@ -25,7 +25,7 @@ const props = defineProps({
 			{{ props.title }}
 		</h3>
 		<template v-if="props.theme === 'default'">
-			<div class="border border-gray-200 dark:border-gray-200/21 rounded-lg p-4">
+			<div class="border border-gray-200 dark:border-gray-200/21 rounded-lg p-4 hover:-translate-y-1 hover:shadow-lg">
 				<slot></slot>
 			</div>
 		</template>

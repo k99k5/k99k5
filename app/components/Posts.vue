@@ -91,8 +91,7 @@ watch(() => props, () => refresh(), {deep: true})
 		</template>
 		<template v-if="props.theme === 'style1'">
 			<Panel v-for="post in posts" :key="post.id" :header="post.title" :to="post.path"
-			       class="flex flex-col transition-all duration-500
-					          dark:bg-black/30 p-3 rounded-2xl"
+			       class="flex flex-col transition-all duration-500 p-3 rounded-2xl !bg-[inherit] hover:-translate-y-1 hover:shadow-lg"
 			>
 				<template #header>
 					<div class="flex flex-col">
