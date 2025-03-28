@@ -27,7 +27,7 @@ const fetchKey = computed(() => {
 
 const {data: posts, refresh} = await useAsyncData(
     fetchKey.value,
-    () => {
+    async () => {
         let query = queryCollection('posts')
             .where('status', '=', 'publish');
 
@@ -41,7 +41,7 @@ const {data: posts, refresh} = await useAsyncData(
             query = query.order('priority', 'ASC')
         }
 
-        return query
+        return await query
             .order('date', 'DESC')
             .all();
     }
