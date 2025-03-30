@@ -16,9 +16,9 @@ const route = useRoute();
 		<ul class="flex-1 flex justify-end items-center gap-5">
 			<li v-for="item in navigation" class="flex justify-center">
 				<NuxtLink
-					:to="item.path"
-					class="text-normal"
-					:class="{
+						:to="item.path"
+						class="text-normal"
+						:class="{
 						'text-primary': route.path === item.path,
 						'text-gray-500': route.path !== item.path,
 						'hover:text-primary-500': route.path !== item.path,
@@ -29,17 +29,20 @@ const route = useRoute();
 			</li>
 			<li class="flex justify-center ml-5">
 				<ClientOnly>
-					<ToggleSwitch v-model="colorMode.preference" class=""
-					              false-value="light"
-					              true-value="dark">
-						<template #handle="{ checked }">
-							<Icon v-if="!checked" name="heroicons:sun"/>
-						</template>
-					</ToggleSwitch>
+					<USwitch size="xl"
+					         class="w-10 h-6"
+					         unchecked-icon="heroicons:sun"
+					         checked-icon="heroicons:light-bulb"
+					         @change="colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light'"
+					         :checked="colorMode.preference === 'dark'"
+					/>
 					<template #fallback>
-						<ToggleSwitch false-value="light" true-value="dark">
-							<Icon name="heroicons:sun"/>
-						</ToggleSwitch>
+						<USwitch size="xl"
+						         class="w-10 h-6"
+						         unchecked-icon="heroicons:sun"
+						         checked-icon="heroicons:light-bulb"
+						         :checked="false"
+						/>
 					</template>
 				</ClientOnly>
 			</li>

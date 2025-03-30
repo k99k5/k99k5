@@ -2,3 +2,4 @@
 @import "tailwindcss-primeui";
 @custom-variant dark (&:where(.dark-mode, .dark-mode *));
 @plugin "@tailwindcss/typography";
+@import "@nuxt/ui";

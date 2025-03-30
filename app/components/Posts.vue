@@ -64,15 +64,9 @@ watch(() => props, () => refresh(), {deep: true})
 				<div>
 					{{ post.description }}
 				</div>
-				<Image v-if="post.image" :src="post.image" alt="Image" class="rounded-2xl overflow-hidden" height="auto"
-				       width="475px">
-					<template #previewicon>
-						<i></i>
-					</template>
-					<template #preview="slotProps">
-						<img :alt="post.title" :src="post.image" :style="slotProps.style"/>
-					</template>
-				</Image>
+				<NuxtImg v-if="post.image" :src="post.image" alt="Image" class="mt-3 rounded-2xl overflow-hidden"
+				         height="auto" width="475px">
+				</NuxtImg>
 				<div class="text-gray-400">
 					<ClientOnly>
 						{{
@@ -90,41 +84,32 @@ watch(() => props, () => refresh(), {deep: true})
 			</NuxtLink>
 		</template>
 		<template v-if="props.theme === 'style1'">
-			<Panel v-for="post in posts" :key="post.id" :header="post.title" :to="post.path"
+			<UCard v-for="post in posts" :key="post.id" :header="post.title" :to="post.path"
 			       class="flex flex-col transition-all duration-500 p-3 rounded-2xl !bg-[inherit] hover:-translate-y-1 hover:shadow-lg"
 			>
-				<template #header>
-					<div class="flex flex-col">
-						<div class="font-bold">
-							{{ post.title }}
-						</div>
-						<div class="text-gray-400">
-							<ClientOnly>
-								{{
-									format(new Date(post.date), 'yyyy-MM-dd')
-								}}
-								<template #fallback>
-									{{
-										format(new Date(post.date), 'yyyy-MM-dd', {
-											in: tz(echoConfig.defaultTimeZone),
-										})
-									}}
-								</template>
-							</ClientOnly>
-						</div>
+				<div class="flex flex-col">
+					<div class="font-bold">
+						{{ post.title }}
 					</div>
-				</template>
+					<div class="text-gray-400">
+						<ClientOnly>
+							{{
+								format(new Date(post.date), 'yyyy-MM-dd')
+							}}
+							<template #fallback>
+								{{
+									format(new Date(post.date), 'yyyy-MM-dd', {
+										in: tz(echoConfig.defaultTimeZone),
+									})
+								}}
+							</template>
+						</ClientOnly>
+					</div>
+				</div>
 				<div class="flex flex-col gap-5">
-					<Image v-if="post.image" :src="post.image" alt="Image" class="rounded-2xl overflow-hidden"
-					       height="auto"
-					       width="475px">
-						<template #previewicon>
-							<i></i>
-						</template>
-						<template #preview="slotProps">
-							<img :alt="post.title" :src="post.image" :style="slotProps.style"/>
-						</template>
-					</Image>
+					<NuxtImg v-if="post.image" :src="post.image" alt="Image" class="mt-3 rounded-2xl overflow-hidden"
+					         height="auto" width="475px">
+					</NuxtImg>
 					<div class="flex flex-wrap justify-between w-full">
 						<span>{{ post.description }}</span>
 						<NuxtLink :to="post.path" class="hover:text-primary flex items-center gap-2">
@@ -133,7 +118,7 @@ watch(() => props, () => refresh(), {deep: true})
 						</NuxtLink>
 					</div>
 				</div>
-			</Panel>
+			</UCard>
 		</template>
 	</div>
 </template>
