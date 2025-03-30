@@ -10,7 +10,7 @@ const props = defineProps({
 
 const {data: computedTags, refresh} = await useAsyncData(
     props.tags ? JSON.stringify(props.tags) : 'tags',
-    async() => {
+    async () => {
         return [].concat(
             (await queryCollection('posts')
                     .where('status', '=', 'publish')
@@ -28,7 +28,12 @@ const {data: computedTags, refresh} = await useAsyncData(
 <template>
 	<div class="flex flex-wrap gap-2 not-prose">
 		<NuxtLink v-for="(tag,idx) in computedTags" :to="formatLinks(appConfig.links.tags,{tag})">
-			<Tag v-if="tag" :severity="['secondary','success','info'][idx % 3]" :value="tag" class="!py-2 !px-3"></Tag>
+			<UBadge v-if="tag"
+			        :color="(['secondary','success','warning','neutral'][idx % 4] as ('secondary'|'success'|'warning'|'neutral'))"
+			        variant="soft"
+			        class="!py-2 !px-3">
+				{{ tag }}
+			</UBadge>
 		</NuxtLink>
 	</div>
 </template>

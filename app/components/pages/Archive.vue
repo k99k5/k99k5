@@ -3,7 +3,7 @@ const {t} = useI18n()
 const appConfig = useAppConfig()
 const {data: tags, refresh} = await useAsyncData(
     'tags',
-    async() => {
+    async () => {
         return [].concat(
             (await queryCollection('posts')
                     .where('status', '=', 'publish')
@@ -34,7 +34,7 @@ const page = computed(() => props.page || null);
 
 useSeoMeta({
     title: currentTag.value != t('全部') ? currentTag.value : (page.value?.title || currentTag.value),
-	description: page.value?.description,
+    description: page.value?.description,
 })
 </script>
 
@@ -44,7 +44,10 @@ useSeoMeta({
 	<div class="flex-1 flex flex-col gap-10">
 		<div class="flex flex-wrap gap-2">
 			<NuxtLink v-for="(tag,idx) in computedTags" :to="formatLinks(appConfig.links.tags,{tag})" class="!p-0">
-				<Tag :severity="currentTag == tag ? null : 'secondary'" :value="tag" class="!py-2 !px-3"></Tag>
+				<UBadge color="primary" :variant="(currentTag == tag ? 'solid' : 'soft') as ('solid' | 'soft')"
+				        class="!py-2 !px-3">
+					{{ tag }}
+				</UBadge>
 			</NuxtLink>
 		</div>
 		<Posts :tag="currentTag == t('全部') ? null : currentTag"></Posts>

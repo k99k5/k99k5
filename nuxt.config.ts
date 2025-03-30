@@ -1,9 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import Aura from '@primeuix/themes/aura';
 import tailwindcss from "@tailwindcss/vite";
 import {fileURLToPath, resolve} from "node:url";
 import Components from 'unplugin-vue-components/vite';
-import {PrimeVueResolver} from '@primevue/auto-import-resolver';
 import echoConfig from "./echo.config";
 import {execSync} from "node:child_process";
 import { title } from 'node:process';
@@ -16,7 +14,7 @@ export default defineNuxtConfig({
     ],
 
     modules: [
-        '@primevue/nuxt-module',
+        '@nuxt/ui',
         '@nuxt/image',
         '@nuxt/scripts',
         '@nuxt/fonts',
@@ -166,11 +164,6 @@ export default defineNuxtConfig({
     vite: {
         plugins: [
             tailwindcss(),
-            Components({
-                resolvers: [
-                    PrimeVueResolver()
-                ]
-            }),
         ],
         css: {
             preprocessorOptions: {
@@ -179,8 +172,10 @@ export default defineNuxtConfig({
         },
     },
 
-    primevue: {
-        importTheme: {from: '~/app/themes/echo'},
+    ui: {
+        theme: {
+            colors: ['primary', 'secondary', 'info', 'success', 'warning', 'error']
+        }
     },
 
     icon: {

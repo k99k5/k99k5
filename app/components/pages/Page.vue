@@ -33,18 +33,12 @@ const page = computed(() => props.page);
 					</ClientOnly>
 				</p>
 			</template>
-			<Image v-if="page.image" :src="page.image" alt="Image" class="rounded-2xl overflow-hidden mt-5"
-			       image-class="rounded-2xl" preview>
-				<template #previewicon>
-					<Icon name="heroicons:magnifying-glass"/>
-				</template>
-				<template #preview="slotProps">
-					<img :alt="page.title" :src="page.image" :style="slotProps.style"/>
-				</template>
-			</Image>
+			<NuxtImg v-if="page.image" :src="page.image" alt="Image" class="rounded-2xl overflow-hidden mt-5">
+			</NuxtImg>
 		</div>
 	</div>
-	<ContentRenderer :value="page" class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert my-5"/>
+	<ContentRenderer :value="page"
+	                 class="prose prose-a:hover:text-primary prose-a:no-underline dark:prose-invert my-5"/>
 	<Tags v-if="page.tags" :tags="page.tags"></Tags>
 </template>
 
