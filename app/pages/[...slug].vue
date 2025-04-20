@@ -38,7 +38,7 @@ useSeoMeta({
     ogDescription: page.value.description
 })
 
-defineOgImageComponent('WithEmoji')
+// defineOgImageComponent('WithEmoji')
 </script>
 
 <template>
