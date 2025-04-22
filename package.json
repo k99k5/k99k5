@@ -42,12 +42,17 @@
   "pnpm": {
     "ignoredBuiltDependencies": [],
     "onlyBuiltDependencies": [
+      "@parcel/watcher",
       "better-sqlite3",
       "esbuild",
+      "rolldown",
       "sharp",
-      "vue-demi",
-      "@parcel/watcher"
-    ]
+      "vue-demi"
+    ],
+    "overrides": {
+      "@intlify/unplugin-vue-i18n": "^6.0.8",
+      "@iconify/vue":"next"
+    }
   },
   "devDependencies": {
     "@iconify-json/heroicons": "^1.2.2",

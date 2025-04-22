@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite';
 import echoConfig from "./echo.config";
 import {execSync} from "node:child_process";
 import { title } from 'node:process';
+import { json } from "node:stream/consumers";
 
 export default defineNuxtConfig({
     appId: echoConfig.siteName,
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
         '@nuxt/icon'
     ],
 
-    compatibilityDate: "2024-11-01",
+    compatibilityDate: "2025-04-01",
 
     future: {
         compatibilityVersion: 4
@@ -78,11 +79,12 @@ export default defineNuxtConfig({
     },
 
     ogImage: {
-        zeroRuntime: true,
+        zeroRuntime: false,
         fonts: [
             'Noto+Sans+SC:400'
         ],
         defaults: {
+            renderer: 'satori',
             emojis: 'twemoji',
         },
     },
