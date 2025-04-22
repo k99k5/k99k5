@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         locales: [
             {
                 code: 'zh-CN',
-                message: import(resolve(__dirname, 'theme.json'))
+                file: resolve(__dirname, "theme.json")
             },
         ],
         bundle: {

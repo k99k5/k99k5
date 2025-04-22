@@ -31,7 +31,7 @@ export default defineNuxtConfig({
         '@nuxt/icon'
     ],
 
-    compatibilityDate: "2024-11-01",
+    compatibilityDate: "2025-04-01",
 
     future: {
         compatibilityVersion: 4
@@ -79,11 +79,12 @@ export default defineNuxtConfig({
     },
 
     ogImage: {
-        zeroRuntime: true,
+        zeroRuntime: false,
         fonts: [
             'Noto+Sans+SC:400'
         ],
         defaults: {
+            renderer: 'satori',
             emojis: 'twemoji',
         },
     },
