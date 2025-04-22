@@ -42,11 +42,12 @@
   "pnpm": {
     "ignoredBuiltDependencies": [],
     "onlyBuiltDependencies": [
+      "@parcel/watcher",
       "better-sqlite3",
       "esbuild",
+      "rolldown",
       "sharp",
-      "vue-demi",
-      "@parcel/watcher"
+      "vue-demi"
     ]
   },
   "devDependencies": {

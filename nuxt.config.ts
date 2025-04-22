@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite';
 import echoConfig from "./echo.config";
 import {execSync} from "node:child_process";
 import { title } from 'node:process';
+import { json } from "node:stream/consumers";
 
 export default defineNuxtConfig({
     appId: echoConfig.siteName,
