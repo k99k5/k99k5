@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "@nuxt/ui";
+
 @custom-variant dark (&:where(.dark-mode, .dark-mode *));
 @plugin "@tailwindcss/typography";
-@import "@nuxt/ui";
+
+:root:not(.dark) .shiki{
+    --tw-prose-pre-bg: #f6f8fa;
+}
