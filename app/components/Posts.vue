@@ -21,9 +21,12 @@ const props = defineProps({
     }
 })
 
+const fetchKey = computed(() => {
+	return `data-${props.tag || 'all'}-${props.limit || 'default'}-${props.theme}`
+})
 
 const {data: posts, refresh} = await useAsyncData(
-    `posts-${useId()}`,
+	fetchKey,
     async () => {
         let query = queryCollection('posts')
             .where('status', '=', 'publish');
@@ -41,10 +44,11 @@ const {data: posts, refresh} = await useAsyncData(
         return await query
             .order('date', 'DESC')
             .all();
-    }
+    },
+	{
+		watch: [props]
+	}
 )
-
-watch(() => props, () => refresh(), {deep: true})
 </script>
 
 <template>
