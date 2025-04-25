@@ -6,4 +6,4 @@ tags:
 
 ~~为什么不问下神奇的TigerKK呢？~~
 
-> 赶紧点击右下角和我聊天吧(x)
+> Telegram搜索@TigerKK\_Bot
