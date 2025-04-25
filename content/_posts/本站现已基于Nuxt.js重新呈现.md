@@ -11,7 +11,7 @@ tags:
 
 ## 为什么不使用WordPress
 
-😅 某WP创始人一边喊着「开源自由」大旗，一边把用户反馈当废纸狂删帖，插件生态搞成代码屎山还硬塞Gutenberg这种反人类设计 \[][\[#1\]](https://wptea.com/wordpress-has-blocked-you/)
+😅 某WP创始人一边喊着「开源自由」大旗，一边把用户反馈当废纸狂删帖，插件生态搞成代码屎山还硬塞Gutenberg这种反人类设计 [\[#1\]](https://wptea.com/wordpress-has-blocked-you/)
 
 ## Hexo呢
 
@@ -27,7 +27,7 @@ Nuxt/Content 可以无缝接入 [](/)[nuxt.studio](https://nuxt.studio/)，可�
 
 ```md
 ::block{:theme="none" :title="最近"}
-  :::posts{:limit='1' :theme="style1"}
+  :::posts{:limit="1" :theme="style1"}
   :::
 ::
 ```
