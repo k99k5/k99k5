@@ -26,7 +26,8 @@
     "@vueuse/core": "^13.1.0",
     "@vueuse/nuxt": "^13.1.0",
     "date-fns": "^4.1.0",
-    "nuxt": "^3.16.2",
+    "nuxt": "npm:nuxt-nightly@3x",
+    "@nuxt/kit": "npm:@nuxt/kit-nightly@3x",
     "nuxt-link-checker": "^4.3.0",
     "nuxt-og-image": "^5.1.2",
     "nuxt-schema-org": "^5.0.5",
@@ -51,7 +52,7 @@
     ],
     "overrides": {
       "@intlify/unplugin-vue-i18n": "^6.0.8",
-      "@iconify/vue":"next"
+      "@iconify/vue": "next"
     }
   },
   "devDependencies": {
