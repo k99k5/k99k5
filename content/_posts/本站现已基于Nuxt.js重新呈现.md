@@ -32,4 +32,32 @@ Nuxt/Content 可以无缝接入 [](/)[nuxt.studio](https://nuxt.studio/)，可�
 ::
 ```
 
-未完待续....
+---
+
+## 按照Hexo习惯写了一个模板
+
+1. git clone [k99k5/Nuxt-Echo-Theme](https://github.com/k99k5/Nuxt-Echo-Theme/)
+2. 迁移文章到 `/content/_posts`
+3. 更新 `echo.config.ts` 的配置信息
+4. `pnpm generate` 即可
+5. `nuxt.studio` 关联上项目即可直接发文章
+
+## 特性
+
+- 支持使用Git时间作为创建/修改时间
+- \_posts目录下的md将视为文章，会显示在archive中
+- 除此之外将视为页面
+- layout目前支持archive/about
+- navigation是否显示在导航栏中
+- 名称前序号为排序
+
+```md [content/2.about.md]
+  ---
+  title: 关于我
+  description: 关于我
+  layout: about
+  navigation: true
+  ---
+```
+
+## 未完待续...
