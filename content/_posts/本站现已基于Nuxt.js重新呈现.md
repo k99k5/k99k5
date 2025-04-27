@@ -39,6 +39,37 @@ Nuxt/Content 可以无缝接入 [](/)[nuxt.studio](https://nuxt.studio/)，可�
 1. git clone [k99k5/Nuxt-Echo-Theme](https://github.com/k99k5/Nuxt-Echo-Theme/)
 2. 迁移文章到 `/content/_posts`
 3. 更新 `echo.config.ts` 的配置信息
+   ```ts [echo.config.ts]
+   export default {
+       siteUrl: 'https://tigerkk.me/',
+       siteLang: 'zh-CN',
+       siteName: 'TigerKK',
+       siteIcon: 'https://gravatar.com/avatar/1f950bb98467b977c546a3acd0f4b6df?size=256',
+       siteDescription: 'TigerKK的博客',
+
+       autoGitDate: true,
+
+       defaultTimeZone: 'Asia/Shanghai',
+
+       libs: {
+           bsz: {
+               enable: true,
+               src: 'https://lib.baomitu.com/busuanzi/2.3.0/bsz.pure.mini.js',
+           },
+       },
+
+       links: {
+           tags: '/tags/:tag',
+       },
+
+
+       ui: {
+           colors: {
+               primary: 'sky',
+           },
+       },
+   }
+   ```
 4. `pnpm generate` 即可
 5. `nuxt.studio` 关联上项目即可直接发文章
 
