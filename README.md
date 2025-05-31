@@ -95,12 +95,14 @@ Nuxt-Echo-Theme 是一个基于 Nuxt.js 构建的轻量级博客模板，采用�
 - 使用 Markdown 格式编写
 - 支持 YAML frontmatter 元数据：
 
-  ```yaml
+  ```markdown
   ---
   title: 文章标题
   date: 2023-01-01
   updated: 2023-01-02
-  tags: [标签1, 标签2]
+  tags: 
+  - 标签1
+  - 标签2
   layout: archive    # 可选布局
   navigation: true   # 是否显示在导航栏
   order: 1           # 导航排序
