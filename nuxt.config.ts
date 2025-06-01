@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     appId: echoConfig.siteName,
 
     extends: [
-        `./locales/${process.env?.NUXT_PUBLIC_SITE_LANG ?? 'zh-CN'}`
+        `./locales/${process?.env?.NUXT_PUBLIC_SITE_LANG ?? 'zh-CN'}`
     ],
 
     modules: [
