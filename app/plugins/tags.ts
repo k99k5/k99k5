@@ -1,3 +1,4 @@
+import Archive from "~/app/components/pages/Archive.vue";
 export default defineNuxtPlugin(() => {
     const router = useRouter()
     const appConfig = useAppConfig()
@@ -6,7 +7,7 @@ export default defineNuxtPlugin(() => {
         router.addRoute({
             name: 'tags',
             path: appConfig.links.tags,
-            component: () => import('~/app/components/pages/Archive.vue')
+            component: Archive
         })
     }
 })
