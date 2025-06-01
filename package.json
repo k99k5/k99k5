@@ -52,7 +52,9 @@
     ],
     "overrides": {
       "@intlify/unplugin-vue-i18n": "^6.0.8",
-      "@iconify/vue": "next"
+      "@iconify/vue": "next",
+      "@unhead/vue": "^2.0.10",
+      "@rolldown/pluginutils": "nightly"
     }
   },
   "devDependencies": {
