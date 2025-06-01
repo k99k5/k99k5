@@ -31,10 +31,12 @@ useSeoMeta({
 
 <template>
     <div>
-        <NuxtLoadingIndicator />
-        <NuxtLayout name="default">
-            <AppError :message="props.error?.message" @handleError="handleError" />
-        </NuxtLayout>
+	    <UApp>
+		    <NuxtLoadingIndicator />
+		    <NuxtLayout name="default">
+			    <AppError :message="props.error?.message" @handleError="handleError" />
+		    </NuxtLayout>
+	    </UApp>
     </div>
 
 </template>
