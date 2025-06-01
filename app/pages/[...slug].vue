@@ -2,6 +2,7 @@
 import {useI18n} from 'vue-i18n'
 import Archive from "~/app/components/pages/Archive.vue";
 import Page from "~/app/components/pages/Page.vue";
+import Gallery from "~/app/components/pages/Gallery.vue";
 
 const {t} = useI18n()
 const route = useRoute()
@@ -43,7 +44,10 @@ defineOgImageComponent('SimpleBlog')
 
 <template>
 	<template v-if="page">
-		<template v-if="!['archive'].includes(page?.layout)">
+		<template v-if="['gallery'].includes(page?.layout)">
+			<Gallery :page="page"></Gallery>
+		</template>
+		<template v-else-if="!['archive'].includes(page?.layout)">
 			<Page :page="page"></Page>
 		</template>
 		<template v-else-if="['archive'].includes(page?.layout)">
