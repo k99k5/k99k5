@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 const fetchKey = computed(() => {
-    return props.tags ? JSON.stringify(props.tags) : 'tags';
+    return props.tags ? props.tags.join('_') : 'tags';
 });
 
 const {data: computedTags, refresh} = await useAsyncData(
