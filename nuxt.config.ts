@@ -28,7 +28,8 @@ export default defineNuxtConfig({
         'nuxt-og-image',
         '@nuxt/content',
         '@nuxtjs/color-mode',
-        '@nuxt/icon'
+        '@nuxt/icon',
+        'nuxt-github-pages',
     ],
 
     compatibilityDate: "2025-04-01",
@@ -129,6 +130,7 @@ export default defineNuxtConfig({
         description: echoConfig.siteDescription,
         url: echoConfig.siteUrl,
         name: echoConfig.siteName,
+        trailingSlash: true,
     },
 
     runtimeConfig: {
