@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import type {H3Event} from 'h3'
+// @ts-ignore
+import {parse} from 'exifr/dist/full.esm.mjs'
 
 type ImageMetadata = {
     url: string
@@ -13,7 +15,6 @@ export default defineEventHandler(async (event: H3Event) => {
     const galleryDir = path.join(process.cwd(), 'public/gallery')
     const result: ImageMetadata[] = [];
 
-    // 递归扫描目录函数
     const scanDir = async (dir: string) => {
         const entries = fs.readdirSync(dir, {withFileTypes: true})
 
@@ -31,11 +32,13 @@ export default defineEventHandler(async (event: H3Event) => {
                         .replace(process.cwd(), '')
                         .replace(/\\/g, '/')
 
+                    const exif = await parse(fullPath).catch(() => null)
+                    const captureTime = exif?.DateTimeOriginal?.toISOString() || stats.mtime.toISOString()
 
                     result.push({
                         url: publicPath,
                         filename: entry.name,
-                        mtime: stats.mtime.toISOString(),
+                        mtime: captureTime,
                         size: stats.size,
                     })
                 } catch (err) {
