@@ -89,6 +89,12 @@ const resetAll = () => {
     positionX.value = 0;
     positionY.value = 0;
 };
+
+watchEffect(() => {
+    if (open.value) {
+        resetAll()
+    }
+})
 </script>
 
 <template>
