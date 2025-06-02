@@ -6,6 +6,7 @@ type GalleryItem = {
     thumbnail: string
     isDir?: boolean
     date?: string
+    depth: number
     children?: GalleryItem[]
 }
 const {data: images} = await useAsyncData('galleryData', () =>
@@ -25,7 +26,8 @@ const galleryItems = computed<GalleryItem[]>(() => {
             structure[folder] = structure[folder] || {
                 name: folder,
                 isDir: true,
-                children: []
+                children: [],
+                depth: image.depth
             }
             structure[folder].children.push({
                 name: rest.join('/').replace(/\.\w+$/, ''),
@@ -34,7 +36,8 @@ const galleryItems = computed<GalleryItem[]>(() => {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                })
+                }),
+                depth: image.depth
             })
         } else {
             structure[parts[0]] = {
@@ -44,12 +47,20 @@ const galleryItems = computed<GalleryItem[]>(() => {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                })
+                }),
+                depth: image.depth
             }
         }
     })
-
-    return Object.values(structure)
+	
+    return Object.values(structure).sort((a: GalleryItem, b: GalleryItem) => {
+        if (a.depth !== b.depth) {
+            return a.depth - b.depth
+        }
+        if (a.isDir && !b.isDir) return -1
+        if (!a.isDir && b.isDir) return 1
+        return 0
+    }) as GalleryItem[]
 })
 </script>
 
