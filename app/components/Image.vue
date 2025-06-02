@@ -84,7 +84,7 @@ const download = async () => {
 							class="max-w-full max-h-[80vh] object-contain"
 					/>
 				</div>
-				<div class=" bottom-8 left-[calc(50%-235px)] flex justify-center gap-4 bg-gray-100/90 dark:bg-gray-900/90 rounded-lg backdrop-blur-sm p-4 w-min">
+				<div class="fixed bottom-8 left-[calc(50%-235px)] flex justify-center gap-4 bg-gray-100/90 dark:bg-gray-900/90 rounded-lg backdrop-blur-sm p-4 w-min">
 					<UButton @click="rotate(-90)" icon="i-heroicons-arrow-uturn-left-20-solid"/>
 					<UButton @click="zoomOut" icon="i-heroicons-minus-20-solid"/>
 					<span class="text-gray-600 dark:text-gray-300 px-2 flex items-center">
