@@ -40,9 +40,31 @@ const resetScale = () => {
     scaleFactor.value = 1;
 };
 
-const resetAll = () => {
-    resetRotation();
-    resetScale();
+const positionX = ref(0);
+const positionY = ref(0);
+const isDragging = ref(false);
+const startX = ref(0);
+const startY = ref(0);
+
+const handleMouseDown = (e: MouseEvent) => {
+  e.preventDefault();
+  isDragging.value = true;
+  startX.value = e.clientX - positionX.value;
+  startY.value = e.clientY - positionY.value;
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mouseup', handleMouseUp);
+};
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (!isDragging.value) return;
+  positionX.value = e.clientX - startX.value;
+  positionY.value = e.clientY - startY.value;
+};
+
+const handleMouseUp = () => {
+  isDragging.value = false;
+  document.removeEventListener('mousemove', handleMouseMove);
+  document.removeEventListener('mouseup', handleMouseUp);
 };
 
 const download = async () => {
@@ -60,6 +82,13 @@ const download = async () => {
     } catch (error) {
     }
 };
+
+const resetAll = () => {
+    resetRotation();
+    resetScale();
+    positionX.value = 0;
+    positionY.value = 0;
+};
 </script>
 
 <template>
@@ -73,16 +102,22 @@ const download = async () => {
 		/>
 		<template #body>
 			<div class="flex flex-col justify-center items-center h-full w-full">
-				<div class="flex justify-center items-center h-full w-full" @wheel="handleWheel">
+				<div class="flex justify-center items-center h-full w-full overflow-hidden"
+					@wheel="handleWheel"
+					@mousedown="handleMouseDown"
+					:style="{ cursor: isDragging ? 'grabbing' : 'grab' }">
 					<NuxtPicture
-							:src="props.src"
-							:alt="props.title"
-							:img-attrs="{
+						:src="props.src"
+						:alt="props.title"
+						:img-attrs="{
 							...props.imgAttrs,
 							class: 'w-auto h-full',
-							style: { transform: `rotate(${rotateAngle}deg) scale(${scaleFactor})` }
+							style: {
+								transform: `translate3d(${positionX}px, ${positionY}px, 0) rotate(${rotateAngle}deg) scale(${scaleFactor})`
+							}
 						}"
-							class="max-w-full max-h-[80vh] object-contain mb-[80px] flex justify-center items-center w-auto h-full"
+						@dragstart.prevent
+						class="max-w-full max-h-[80vh] object-contain mb-[80px] flex justify-center items-center w-auto h-full"
 					/>
 				</div>
 				<div class="fixed bottom-8 left-[calc(50%-235px)] flex justify-center gap-4 bg-gray-100/90 dark:bg-gray-900/90 rounded-lg backdrop-blur-sm p-4 w-min">
@@ -104,13 +139,12 @@ const download = async () => {
 					</span>
 				</div>
 			</div>
-		
 		</template>
 	</UModal>
-
-
 </template>
 
 <style scoped>
-
+img {
+  transition: transform 0.3s ease;
+}
 </style>
