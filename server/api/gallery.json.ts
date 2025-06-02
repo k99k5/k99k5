@@ -9,6 +9,7 @@ type ImageMetadata = {
     filename: string
     mtime: string
     size: number
+    depth: number
 }
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -40,6 +41,7 @@ export default defineEventHandler(async (event: H3Event) => {
                         filename: entry.name,
                         mtime: captureTime,
                         size: stats.size,
+                        depth: (publicPath.match(/\//g) || []).length - 1
                     })
                 } catch (err) {
                     console.error(`处理图片出错: ${fullPath}`, err)
@@ -52,9 +54,12 @@ export default defineEventHandler(async (event: H3Event) => {
     await scanDir(galleryDir)
 
     // 按修改时间排序（最新在前）
-    result.sort((a, b) =>
-        new Date(b.mtime).getTime() - new Date(a.mtime).getTime()
-    )
+    result.sort((a, b) => {
+        if (a.depth !== b.depth) {
+            return a.depth - b.depth
+        }
+        return new Date(b.mtime).getTime() - new Date(a.mtime).getTime()
+    })
 
     return result
 })
