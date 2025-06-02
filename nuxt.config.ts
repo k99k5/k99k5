@@ -151,7 +151,7 @@ export default defineNuxtConfig({
     experimental: {
         viewTransition: true,
         componentIslands: {
-            selectiveClient: 'deep',
+            selectiveClient: true,
         },
     },
 
