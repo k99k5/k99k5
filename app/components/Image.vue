@@ -79,9 +79,10 @@ const download = async () => {
 							:alt="props.title"
 							:img-attrs="{
 							...props.imgAttrs,
+							class: 'w-auto h-full',
 							style: { transform: `rotate(${rotateAngle}deg) scale(${scaleFactor})` }
 						}"
-							class="max-w-full max-h-[80vh] object-contain"
+							class="max-w-full max-h-[80vh] object-contain mb-[80px] flex justify-center items-center w-auto h-full"
 					/>
 				</div>
 				<div class="fixed bottom-8 left-[calc(50%-235px)] flex justify-center gap-4 bg-gray-100/90 dark:bg-gray-900/90 rounded-lg backdrop-blur-sm p-4 w-min">
