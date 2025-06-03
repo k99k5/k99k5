@@ -27,7 +27,11 @@ const galleryItems = computed<GalleryItem[]>(() => {
                 name: folder,
                 isDir: true,
                 children: [],
-                depth: image.depth
+                depth: image.depth,
+                date: image.mtime,
+            }
+            if (new Date(image.mtime).getTime() > new Date(structure[folder].date).getTime()) {
+                structure[folder].date = image.mtime
             }
             structure[folder].children.push({
                 name: rest.join('/').replace(/\.\w+$/, ''),
@@ -59,7 +63,7 @@ const galleryItems = computed<GalleryItem[]>(() => {
         }
         if (a.isDir && !b.isDir) return -1
         if (!a.isDir && b.isDir) return 1
-        return 0
+	    return new Date(a.date).getTime() - new Date(b.date).getTime()
     }) as GalleryItem[]
 })
 </script>
