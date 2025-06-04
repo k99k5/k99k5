@@ -70,7 +70,7 @@ const galleryItems = computed<GalleryItem[]>(() => {
 
 
 <template>
-	<div class="space-y-10 mx-auto px-4 max-w-[440px]">
+	<div class="space-y-10 mx-auto max-w-[440px]">
 		<template v-for="item in galleryItems" :key="item.name">
 			<!-- 合集 -->
 			<div v-if="item.isDir" class="space-y-3">
