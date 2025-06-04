@@ -30,7 +30,7 @@ const galleryItems = computed<GalleryItem[]>(() => {
                 depth: image.depth,
                 date: image.mtime,
             }
-            if (new Date(image.mtime).getTime() > new Date(structure[folder].date).getTime()) {
+            if (new Date(image.mtime).getTime() < new Date(structure[folder].date).getTime()) {
                 structure[folder].date = image.mtime
             }
             structure[folder].children.push({
