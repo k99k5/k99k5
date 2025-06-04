@@ -1,11 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 import {fileURLToPath, resolve} from "node:url";
-import Components from 'unplugin-vue-components/vite';
 import echoConfig from "./echo.config";
 import {execSync} from "node:child_process";
-import { title } from 'node:process';
-import { json } from "node:stream/consumers";
 
 export default defineNuxtConfig({
     appId: echoConfig.siteName,
@@ -30,12 +27,14 @@ export default defineNuxtConfig({
         '@nuxtjs/color-mode',
         '@nuxt/icon',
         'nuxt-github-pages',
+        '@vite-pwa/nuxt',
     ],
 
     compatibilityDate: "2025-04-01",
 
     future: {
-        compatibilityVersion: 4
+        compatibilityVersion: 4,
+        typescriptBundlerResolution: true,
     },
 
     devtools: {
@@ -96,24 +95,24 @@ export default defineNuxtConfig({
             ctx.content.path = (ctx.content.path as string).replace(/_posts\//, '') as string;
 
             // priority
-            if (/\/[0-9]+\./.test(ctx.file.path)){
+            if (/\/[0-9]+\./.test(ctx.file.path)) {
                 const priority = ctx.file.path.match(/[0-9]+\./)?.[0]?.replace('.', '') || '0';
                 ctx.content.priority = parseInt(priority);
             }
 
             // auto set date
-            if (echoConfig.autoGitDate){
+            if (echoConfig.autoGitDate) {
                 const dates = execSync(`git log --follow --format="%ad" -- "${ctx.file.path}"`).toString().trim().split('\n');
                 if (!ctx.content?.date) {
-                    ctx.content.date = new Date( dates[dates.length - 1] || Date.now()).toISOString();
+                    ctx.content.date = new Date(dates[dates.length - 1] || Date.now()).toISOString();
                 }
                 if (!ctx.content?.updated) {
-                    ctx.content.updated = new Date( dates[0] || Date.now()).toISOString();
+                    ctx.content.updated = new Date(dates[0] || Date.now()).toISOString();
                 }
             }
 
             // remove \n
-            if (ctx.content.description){
+            if (ctx.content.description) {
                 ctx.content.description = (ctx.content.description as string).replace(/[\n\\n]+/g, ' ').trim();
             }
         }
@@ -155,6 +154,7 @@ export default defineNuxtConfig({
         componentIslands: {
             selectiveClient: true,
         },
+        payloadExtraction: true,
     },
 
     alias: {
@@ -187,5 +187,50 @@ export default defineNuxtConfig({
 
     icon: {
         serverBundle: 'local',
+    },
+
+    pwa: {
+        strategies: 'generateSW',
+        srcDir: undefined,
+        filename: undefined,
+        registerType: 'autoUpdate',
+        manifest: {
+            name: echoConfig.siteName,
+            short_name: echoConfig.siteName,
+            icons: [
+                {
+                    src: 'pwa-192x192.png',
+                    sizes: '192x192',
+                    type: 'image/png',
+                },
+                {
+                    src: 'pwa-512x512.png',
+                    sizes: '512x512',
+                    type: 'image/png',
+                },
+                {
+                    src: 'pwa-512x512.png',
+                    sizes: '512x512',
+                    type: 'image/png',
+                    purpose: 'any maskable',
+                },
+            ],
+        },
+        workbox: {
+            globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+        },
+        injectManifest: {
+            globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+        },
+        client: {
+            installPrompt: true,
+        },
+        devOptions: {
+            enabled: true,
+            suppressWarnings: true,
+            navigateFallback: '/',
+            navigateFallbackAllowlist: [/^\/$/],
+            type: 'module',
+        },
     },
 });
