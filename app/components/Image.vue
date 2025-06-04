@@ -126,7 +126,7 @@ watchEffect(() => {
 						class="max-w-full max-h-[80vh] object-contain mb-[80px] flex justify-center items-center w-auto h-full"
 					/>
 				</div>
-				<div class="fixed bottom-8 left-[calc(50%-235px)] flex max-sm:flex-wrap justify-center gap-4 bg-gray-100/90 dark:bg-gray-900/90 rounded-lg backdrop-blur-sm p-4 w-min max-sm:w-full max-sm:left-0">
+				<div class="fixed bottom-8 left-[calc(50%-235px)] flex max-sm:flex-wrap justify-center gap-4 bg-gray-100/90 dark:bg-gray-900/90 rounded-lg backdrop-blur-sm p-4 w-min max-sm:w-full max-sm:left-0 max-sm:bottom-0">
 					<UButton @click="rotate(-90)" icon="i-heroicons-arrow-uturn-left-20-solid"/>
 					<UButton @click="zoomOut" icon="i-heroicons-minus-20-solid"/>
 					<span class="text-gray-600 dark:text-gray-300 px-2 flex items-center">
