@@ -63,7 +63,7 @@ const galleryItems = computed<GalleryItem[]>(() => {
         }
         if (a.isDir && !b.isDir) return -1
         if (!a.isDir && b.isDir) return 1
-	    return new Date(a.date).getTime() - new Date(b.date).getTime()
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
     }) as GalleryItem[]
 })
 </script>
