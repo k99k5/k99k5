@@ -25,8 +25,8 @@ navigation: false
 ::
 
 ::block-group{:title="在听"}
-- 莫妮卡
-  - 柳爽
+- 东京人寿
+  - 容祖儿
 - 群青
   - YOASOBI
 ::
